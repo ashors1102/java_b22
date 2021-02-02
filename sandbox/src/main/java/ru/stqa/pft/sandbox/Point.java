@@ -13,7 +13,7 @@ public class Point {
      * Метод для расчета расстояния между 2х точек по их координатам
      */
 
-    public double distance (Point p1, Point p2) {
-        return Math.sqrt(((p2.x - p1.x) * (p2.x - p1.x)) + ((p2.y - p1.y)*(p2.y - p1.y)));
+    public double distance (Point anotherPoint) {
+        return Math.sqrt(((this.x - anotherPoint.x) * (this.x - anotherPoint.x)) + ((this.y - anotherPoint.y)*(this.y - anotherPoint.y)));
     }
 }

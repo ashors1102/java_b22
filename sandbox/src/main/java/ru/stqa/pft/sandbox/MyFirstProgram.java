@@ -4,9 +4,9 @@ public class MyFirstProgram {
 	public static void main(String[] args) {
 		System.out.println("Hello, world!");
 
-		Point myPoint = new Point(10, 1);
-		Point anotherPoint = new Point(2, 1);
-		System.out.println(myPoint.distance(myPoint, anotherPoint));
+		Point myPoint = new Point(10, 0);
+		Point anotherPoint = new Point(5, 0);
+		System.out.println(myPoint.distance(anotherPoint));
 	}
 
 	/** Функция расчета расстояния между 2х точек по их координатам
