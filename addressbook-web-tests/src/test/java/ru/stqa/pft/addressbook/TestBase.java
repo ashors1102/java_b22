@@ -10,14 +10,18 @@ import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TestBase {
+public class TestBase extends ApplicationManager {
     public WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
-      wd = new FirefoxDriver();
-      wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-      login("admin", "secret");
+        init();
+    }
+
+    private void init() {
+        wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        login("admin", "secret");
     }
 
     private void login(String username, String password) {
@@ -63,7 +67,11 @@ public class TestBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() throws Exception {
-      wd.quit();
+        stop();
+    }
+
+    private void stop() {
+        wd.quit();
     }
 
     protected boolean isElementPresent(By by) {
