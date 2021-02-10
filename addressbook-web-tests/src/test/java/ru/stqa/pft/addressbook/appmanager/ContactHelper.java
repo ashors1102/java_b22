@@ -40,4 +40,12 @@ public class ContactHelper extends HelperBase  {
     public void updateContact() {
         click(By.name("update"));
     }
+
+    public void initContactModificationThroughDetails() {
+        click(By.xpath("//img[@alt='Details']"));
+    }
+
+    public void submitModifyContact() {
+        click(By.name("modifiy"));
+    }
 }

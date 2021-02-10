@@ -12,4 +12,13 @@ public class ContactModificationTests extends TestBase {
         app.getContactHelper().updateContact();
         app.getNavigationHelper().gotoHomePage();
     }
+
+    @Test
+    public void testContactModificationThroughDetails() throws Exception {
+        app.getContactHelper().initContactModificationThroughDetails();
+        app.getContactHelper().submitModifyContact();
+        app.getContactHelper().fillContactForm(new ContactData("Aleksey_edit", "Shorshin_edit", "+7(916)226-71-94", "ashors1102@gmail.com"));
+        app.getContactHelper().updateContact();
+        app.getNavigationHelper().gotoHomePage();
+    }
 }
