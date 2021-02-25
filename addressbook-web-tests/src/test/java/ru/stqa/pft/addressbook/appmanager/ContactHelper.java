@@ -65,4 +65,12 @@ public class ContactHelper extends HelperBase  {
         fillContactForm(contact, true);
         submitNewContact();
     }
+
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public void pauseAfterDeletion() {
+        wd.findElement(By.cssSelector("div.msgbox"));
+    }
 }
