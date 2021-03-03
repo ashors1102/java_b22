@@ -9,7 +9,7 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void gotoGroupPage() {
+    public void groupPage() {
         if (isElementPresent(By.name("new"))
                 && isElementPresent(By.name("delete"))
                 && isElementPresent(By.name("edit"))){
