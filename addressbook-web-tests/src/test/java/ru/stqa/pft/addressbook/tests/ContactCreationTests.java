@@ -14,22 +14,25 @@ public class ContactCreationTests extends TestBase {
     @BeforeMethod
     public void checkForExistingGroup() {
         app.goTo().groupPage();
-        if (!app.group().isThereAGroup()) {
-            app.group().create(new GroupData("test1", null, null));
+        if (app.group().list().size() == 0) {
+            app.group().create(new GroupData().withName("test1"));
         }
-        app.goTo().gotoHomePage();
+        else {
+            app.group().modify(0, new GroupData().withId(0).withName("test1"));
+        }
+        app.goTo().homePage();
     }
 
     @Test
     public void testContactCreation() throws Exception {
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
 
-        app.goTo().gotoAddNewPage();
-        ContactData contact = new ContactData("Aleksey", "Shorshin", "+79162267194", "aleksey.shorshin@yandex.ru", "test1");
-        app.getContactHelper().createContact(contact, true);
-        app.goTo().gotoHomePage();
+        app.goTo().AddNewPage();
+        ContactData contact = new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1");
+        app.contact().create(contact, true);
+        app.goTo().homePage();
 
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1);
 
         before.add(contact);

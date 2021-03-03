@@ -16,7 +16,7 @@ public class TestBase {
 
     @AfterSuite
     public void tearDown() throws Exception {
-        app.getSessionHelper().logout();
+        app.session().logout();
         app.stop();
     }
 

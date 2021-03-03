@@ -13,31 +13,31 @@ public class ContactDeletionTests extends TestBase {
 
     @BeforeMethod
     public void checkForExistingPreconditions() {
-        if (!app.getContactHelper().isThereAContact()) {
+        if (app.contact().list().size() == 0) {
             app.goTo().groupPage();
-            if (!app.group().isThereAGroup()){
-                app.group().create(new GroupData("test1", null, null));
+            if (app.group().list().size() == 0) {
+                app.group().create(new GroupData().withName("test1"));
             }
-            app.goTo().gotoAddNewPage();
-            app.getContactHelper().createContact(new ContactData("Aleksey", "Shorshin", "+79162267194", "aleksey.shorshin@yandex.ru", "test1"), true);
-            app.goTo().gotoHomePage();
+            else {
+                app.group().modify(0, new GroupData().withId(0).withName("test1"));
+            }
+            app.goTo().AddNewPage();
+            app.contact().create(new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1"), true);
+            app.goTo().homePage();
         }
     }
 
     @Test
     public void testContactDeletion () throws Exception {
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
+        int index = before.size() - 1;
+        app.contact().delete(index);
+        app.goTo().homePage();
 
-        app.getContactHelper().selectContact(before.size() - 1);
-        app.getContactHelper().deleteSelectedContact();
-        app.getContactHelper().closeAlert();
-        app.getContactHelper().pauseAfterDeletion();
-        app.goTo().gotoHomePage();
-
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(before.size()-1);
+        before.remove(index);
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);
         after.sort(byId);

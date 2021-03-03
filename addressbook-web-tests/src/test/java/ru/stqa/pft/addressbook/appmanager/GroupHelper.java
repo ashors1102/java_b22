@@ -18,54 +18,54 @@ public class GroupHelper extends HelperBase {
         click(By.linkText("group page"));
     }
 
-    public void submitGroupCreation() {
+    public void submitCreation() {
         click(By.name("submit"));
     }
 
-    public void fillGroupForm(GroupData groupData) {
+    public void fillForm(GroupData groupData) {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
     }
 
-    public void initGroupCreation() {
+    public void initCreation() {
         click(By.name("new"));
     }
 
-    public void deleteSelectedGroups() {
+    public void deleteSelected() {
         click(By.name("delete"));
     }
 
-    public void selectGroup(int index) {
+    public void select(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
     }
 
-    public void initGroupModification() {
+    public void initModification() {
         click(By.name("edit"));
     }
 
-    public void submitGroupModification() {
+    public void submitModification() {
         click(By.name("update"));
     }
 
     public void create(GroupData group) {
-        initGroupCreation();
-        fillGroupForm(group);
-        submitGroupCreation();
+        initCreation();
+        fillForm(group);
+        submitCreation();
         returnToGroupPage();
     }
 
     public void modify(int index, GroupData group) {
-        selectGroup(index);
-        initGroupModification();
-        fillGroupForm(group);
-        submitGroupModification();
+        select(index);
+        initModification();
+        fillForm(group);
+        submitModification();
         returnToGroupPage();
     }
 
     public void delete(int index) {
-        selectGroup(index);
-        deleteSelectedGroups();
+        select(index);
+        deleteSelected();
         returnToGroupPage();
     }
 
@@ -83,8 +83,7 @@ public class GroupHelper extends HelperBase {
         for (WebElement element : elements){
             String name = element.getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            GroupData group = new GroupData(id, name, null, null);
-            groups.add(group);
+            groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
     }
