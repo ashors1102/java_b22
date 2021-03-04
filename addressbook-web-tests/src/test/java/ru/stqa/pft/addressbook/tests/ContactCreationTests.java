@@ -14,11 +14,13 @@ public class ContactCreationTests extends TestBase {
     @BeforeMethod
     public void checkForExistingGroup() {
         app.goTo().groupPage();
-        if (app.group().list().size() == 0) {
+        if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test1"));
         }
         else {
-            app.group().modify(0, new GroupData().withId(0).withName("test1"));
+            GroupData modifiedGroup = app.group().all().iterator().next();
+            GroupData group = new GroupData().withId(modifiedGroup.getId());
+            app.group().modify(group.withName("test1"));
         }
         app.goTo().homePage();
     }

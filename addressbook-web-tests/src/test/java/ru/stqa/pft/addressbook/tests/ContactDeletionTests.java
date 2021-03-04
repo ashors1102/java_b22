@@ -15,12 +15,17 @@ public class ContactDeletionTests extends TestBase {
     public void checkForExistingPreconditions() {
         if (app.contact().list().size() == 0) {
             app.goTo().groupPage();
-            if (app.group().list().size() == 0) {
+            if (app.group().all().size() == 0) {
                 app.group().create(new GroupData().withName("test1"));
             }
             else {
-                app.group().modify(0, new GroupData().withId(0).withName("test1"));
+                GroupData modifiedGroup = app.group().all().iterator().next();
+                GroupData group = new GroupData().withId(modifiedGroup.getId());
+                app.group().modify(group.withName("test1"));
             }
+//            else {
+//                app.group().modify(new GroupData().withName("test1"));
+//            }
             app.goTo().AddNewPage();
             app.contact().create(new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1"), true);
             app.goTo().homePage();
