@@ -36,39 +36,49 @@ public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification() throws Exception {
-        List<ContactData> before = app.contact().list();
-        int index = before.size() - 1;
-        ContactData contact = new ContactData().withId(before.get(before.size()-1).getId()).withFirstname("Aleksey_edit").withLastname("Shorshin_edit").withMobile("+7(916)226-71-94").withEmail("ashors1102@gmail.com");
-        app.contact().modify(index, contact);
+        Set<ContactData> before = app.contact().all();
+        ContactData modifiedContact = before.iterator().next();
+        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Aleksey_edit").withLastname("Shorshin_edit").withMobile("+7(916)226-71-94").withEmail("ashors1102@gmail.com");
+        app.contact().modify(contact);
         app.goTo().homePage();
 
-        List<ContactData> after = app.contact().list();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(index);
+        before.remove(modifiedContact);
         before.add(contact);
+/**
+ * Сортировка списков при помощи lambda-выражения
+ * */
+/*
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);
         after.sort(byId);
+ */
         Assert.assertEquals(before, after);
     }
 
     @Test
     public void testContactModificationThroughDetails() throws Exception {
-        List<ContactData> before = app.contact().list();
-        int index = before.size() - 1;
-        ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstname("Aleksey_edit").withLastname("Shorshin_edit").withMobile("+7(916)226-71-94").withEmail("ashors1102@gmail.com");
-        app.contact().modifyThroughDetails(index, contact);
+        Set<ContactData> before = app.contact().all();
+        ContactData modifiedContact = before.iterator().next();
+        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Aleksey_edit").withLastname("Shorshin_edit").withMobile("+7(916)226-71-94").withEmail("ashors1102@gmail.com");
+        app.contact().modifyThroughDetails(contact);
         app.goTo().homePage();
 
-        List<ContactData> after = app.contact().list();
+        Set<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(index);
+        before.remove(modifiedContact);
         before.add(contact);
+/**
+ * Сортировка списков при помощи lambda-выражения
+ * */
+/*
         Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
         before.sort(byId);
         after.sort(byId);
+ */
         Assert.assertEquals(before, after);
     }
 }

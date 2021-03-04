@@ -8,7 +8,9 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase  {
 
@@ -37,6 +39,10 @@ public class ContactHelper extends HelperBase  {
         wd.findElements(By.name("selected[]")).get(index).click();
     }
 
+    public void selectById(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
+
     public void deleteSelected() {
         click(By.xpath("//input[@value='Delete']"));
     }
@@ -49,12 +55,16 @@ public class ContactHelper extends HelperBase  {
         wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
+    public void initModificationById(int id) {
+        wd.findElement(By.xpath("//a[@href='edit.php?id=" + id +"']")).click();
+    }
+
     public void update() {
         click(By.name("update"));
     }
 
-    public void initModificationThroughDetails(int index) {
-        wd.findElements(By.xpath("//img[@alt='Details']")).get(index).click();
+    public void initModificationThroughDetailsById(int id) {
+        wd.findElement(By.xpath("//a[@href='view.php?id=" + id +"']")).click();
     }
 
     public void submitModify() {
@@ -70,8 +80,8 @@ public class ContactHelper extends HelperBase  {
         submitNew();
     }
 
-    public void modify(int index, ContactData contact) {
-        initModification(index);
+    public void modify(ContactData contact) {
+        initModificationById(contact.getId());
         fillForm(contact, false);
         update();
     }
@@ -83,8 +93,15 @@ public class ContactHelper extends HelperBase  {
         pauseAfterDeletion();
     }
 
-    public void modifyThroughDetails(int index, ContactData contact) {
-        initModificationThroughDetails(index);
+    public void delete(ContactData contact) {
+        selectById(contact.getId());
+        deleteSelected();
+        closeAlert();
+        pauseAfterDeletion();
+    }
+
+    public void modifyThroughDetails(ContactData contact) {
+        initModificationThroughDetailsById(contact.getId());
         submitModify();
         fillForm(contact, false);
         update();
@@ -100,6 +117,18 @@ public class ContactHelper extends HelperBase  {
 
     public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
+        for (WebElement element : elements) {
+            int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("value"));
+            String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            String firstname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname));
+        }
+        return contacts;
+    }
+
+    public Set<ContactData> all() {
+        Set<ContactData> contacts = new HashSet<>();
         List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
         for (WebElement element : elements) {
             int id = Integer.parseInt(element.findElement(By.cssSelector("td:nth-child(1) input")).getAttribute("value"));
