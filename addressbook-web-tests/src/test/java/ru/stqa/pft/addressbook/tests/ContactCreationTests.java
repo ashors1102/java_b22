@@ -17,15 +17,16 @@ public class ContactCreationTests extends TestBase {
         if (app.group().all().size() == 0) {
             app.group().create(new GroupData().withName("test1"));
         }
-        else {
-            Set<GroupData> elements = app.group().all();
-            for (GroupData element : elements){
-                if (!element.getName().equals("test1")) {
-                    app.group().create(new GroupData().withName("test1"));
-                }
-                break;
-            }
-        }
+// Черновой вариант проверки непустого списка групп на наличие группы с нужным именем
+//        else {
+//            Set<GroupData> elements = app.group().all();
+//            for (GroupData element : elements){
+//                if (!element.getName().equals("test1")) {
+//                    app.group().create(new GroupData().withName("test1"));
+//                }
+//                break;
+//            }
+//        }
         app.goTo().homePage();
     }
 
