@@ -19,9 +19,13 @@ public class ContactModificationTests extends TestBase {
                 app.group().create(new GroupData().withName("test1"));
             }
             else {
-                GroupData modifiedGroup = app.group().all().iterator().next();
-                GroupData group = new GroupData().withId(modifiedGroup.getId());
-                app.group().modify(group.withName("test1"));
+                Set<GroupData> elements = app.group().all();
+                for (GroupData element : elements){
+                    if (!element.getName().equals("test1")) {
+                        app.group().create(new GroupData().withName("test1"));
+                    }
+                    break;
+                }
             }
             app.goTo().AddNewPage();
             app.contact().create(new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1"), true);

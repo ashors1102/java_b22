@@ -5,9 +5,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
-
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactCreationTests extends TestBase {
 
@@ -18,9 +18,13 @@ public class ContactCreationTests extends TestBase {
             app.group().create(new GroupData().withName("test1"));
         }
         else {
-            GroupData modifiedGroup = app.group().all().iterator().next();
-            GroupData group = new GroupData().withId(modifiedGroup.getId());
-            app.group().modify(group.withName("test1"));
+            Set<GroupData> elements = app.group().all();
+            for (GroupData element : elements){
+                if (!element.getName().equals("test1")) {
+                    app.group().create(new GroupData().withName("test1"));
+                }
+                break;
+            }
         }
         app.goTo().homePage();
     }

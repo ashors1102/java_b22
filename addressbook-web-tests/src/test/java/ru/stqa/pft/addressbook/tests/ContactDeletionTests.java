@@ -5,9 +5,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
-
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ContactDeletionTests extends TestBase {
 
@@ -19,13 +19,14 @@ public class ContactDeletionTests extends TestBase {
                 app.group().create(new GroupData().withName("test1"));
             }
             else {
-                GroupData modifiedGroup = app.group().all().iterator().next();
-                GroupData group = new GroupData().withId(modifiedGroup.getId());
-                app.group().modify(group.withName("test1"));
+                Set<GroupData> elements = app.group().all();
+                for (GroupData element : elements){
+                    if (!element.getName().equals("test1")) {
+                        app.group().create(new GroupData().withName("test1"));
+                    }
+                    break;
+                }
             }
-//            else {
-//                app.group().modify(new GroupData().withName("test1"));
-//            }
             app.goTo().AddNewPage();
             app.contact().create(new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1"), true);
             app.goTo().homePage();
