@@ -28,7 +28,11 @@ public class ContactDeletionTests extends TestBase {
 //                }
 //            }
             app.goTo().AddNewPage();
-            app.contact().create(new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1"), true);
+            app.contact().create(new ContactData().withFirstname("Aleksey")
+                                                  .withLastname("Shorshin")
+                                                  .withMobile("+79162267194")
+                                                  .withEmail("aleksey.shorshin@yandex.ru")
+                                                  .withGroup("test1"), true);
             app.goTo().homePage();
         }
     }

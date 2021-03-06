@@ -28,7 +28,11 @@ public class ContactModificationTests extends TestBase {
 //                }
 //            }
             app.goTo().AddNewPage();
-            app.contact().create(new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1"), true);
+            app.contact().create(new ContactData().withFirstname("Aleksey")
+                                                  .withLastname("Shorshin")
+                                                  .withMobile("+79162267194")
+                                                  .withEmail("aleksey.shorshin@yandex.ru")
+                                                  .withGroup("test1"), true);
             app.goTo().homePage();
         }
     }
@@ -37,7 +41,11 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() throws Exception {
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
-        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Aleksey_edit").withLastname("Shorshin_edit").withMobile("+7(916)226-71-94").withEmail("ashors1102@gmail.com");
+        ContactData contact = new ContactData().withId(modifiedContact.getId())
+                                               .withFirstname("Aleksey_edit")
+                                               .withLastname("Shorshin_edit")
+                                               .withMobile("+7(916)226-71-94")
+                                               .withEmail("ashors1102@gmail.com");
         app.contact().modify(contact);
         app.goTo().homePage();
         Contacts after = app.contact().all();
@@ -49,7 +57,11 @@ public class ContactModificationTests extends TestBase {
     public void testContactModificationThroughDetails() throws Exception {
         Contacts before = app.contact().all();
         ContactData modifiedContact = before.iterator().next();
-        ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstname("Aleksey_edit").withLastname("Shorshin_edit").withMobile("+7(916)226-71-94").withEmail("ashors1102@gmail.com");
+        ContactData contact = new ContactData().withId(modifiedContact.getId())
+                                               .withFirstname("Aleksey_edit")
+                                               .withLastname("Shorshin_edit")
+                                               .withMobile("+7(916)226-71-94")
+                                               .withEmail("ashors1102@gmail.com");
         app.contact().modifyThroughDetails(contact);
         app.goTo().homePage();
         Contacts after = app.contact().all();

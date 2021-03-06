@@ -33,7 +33,11 @@ public class ContactCreationTests extends TestBase {
     public void testContactCreation() throws Exception {
         Contacts before = app.contact().all();
         app.goTo().AddNewPage();
-        ContactData contact = new ContactData().withFirstname("Aleksey").withLastname("Shorshin").withMobile("+79162267194").withEmail("aleksey.shorshin@yandex.ru").withGroup("test1");
+        ContactData contact = new ContactData().withFirstname("Aleksey")
+                                               .withLastname("Shorshin")
+                                               .withMobile("+79162267194")
+                                               .withEmail("aleksey.shorshin@yandex.ru")
+                                               .withGroup("test1");
         app.contact().create(contact, true);
         app.goTo().homePage();
         Contacts after = app.contact().all();
