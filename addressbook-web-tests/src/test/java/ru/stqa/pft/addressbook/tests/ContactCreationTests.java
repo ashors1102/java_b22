@@ -6,7 +6,8 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
-import java.io.File;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -36,30 +37,20 @@ public class ContactCreationTests extends TestBase {
     }
 
     @DataProvider
-    public Iterator<Object[]> validContacts(){
+    public Iterator<Object[]> validContacts() throws IOException {
         List<Object[]> list = new ArrayList<>();
         File photo = new File("src/test/resources/stru.png");
-        list.add(new Object[] {new ContactData().withFirstname("Firstname 1")
-                                                .withLastname("Lastname 1")
-                                                .withMobile("+7(999)-999-99-99")
-                                                .withAddress("Address 1")
-                                                .withEmail("user1@mail.com")
-                                                .withGroup("test1")
-                                                .withPhoto(photo)});
-        list.add(new Object[] {new ContactData().withFirstname("Firstname 2")
-                                                .withLastname("Lastname 2")
-                                                .withMobile("+7(888)-888-88-88")
-                                                .withAddress("Address 2")
-                                                .withEmail("user2@mail.com")
-                                                .withGroup("test1")
-                                                .withPhoto(photo)});
-        list.add(new Object[] {new ContactData().withFirstname("Firstname 3")
-                                                .withLastname("Lastname 3")
-                                                .withMobile("+7(777)-777-77-77")
-                                                .withAddress("Address 3")
-                                                .withEmail("user3@mail.com")
-                                                .withGroup("test1")
-                                                .withPhoto(photo)});
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+        String line = reader.readLine();
+        while (line != null){
+            String[] split = line.split(";");
+            list.add(new Object[] {new ContactData().withFirstname(split[0])
+                                                    .withLastname(split[1])
+                                                    .withMobile(split[2])
+                                                    .withEmail(split[3])
+                                                    .withPhoto(photo)});
+            line = reader.readLine();
+        }
         return list.iterator();
     }
 
