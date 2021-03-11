@@ -5,7 +5,6 @@
     <mobilePhone>+7-999-99-90</mobilePhone>
     <email>email-0@mail.com</email>
     <group>test1</group>
-    <photo>src\test\resources\stru.png</photo>
   </contact>
   <contact>
     <firstname>Firstname 1</firstname>
@@ -13,7 +12,6 @@
     <mobilePhone>+7-999-99-91</mobilePhone>
     <email>email-1@mail.com</email>
     <group>test1</group>
-    <photo>src\test\resources\stru.png</photo>
   </contact>
   <contact>
     <firstname>Firstname 2</firstname>
@@ -21,6 +19,5 @@
     <mobilePhone>+7-999-99-92</mobilePhone>
     <email>email-2@mail.com</email>
     <group>test1</group>
-    <photo>src\test\resources\stru.png</photo>
   </contact>
 </list>
