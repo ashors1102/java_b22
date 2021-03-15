@@ -12,9 +12,9 @@ public class ContactModificationTests extends TestBase {
 
     @BeforeMethod
     public void checkForExistingPreconditions() {
-        if (app.contact().list().size() == 0) {
-            app.goTo().groupPage();
-            if (app.group().all().size() == 0){
+        if (app.db().contacts().size() == 0) {
+            if (app.db().groups().size() == 0){
+                app.goTo().groupPage();
                 app.group().create(new GroupData().withName("test1"));
             }
 // Черновой вариант проверки непустого списка групп на наличие группы с нужным именем
@@ -39,7 +39,7 @@ public class ContactModificationTests extends TestBase {
 
     @Test
     public void testContactModification() throws Exception {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId())
                                                .withFirstname("Aleksey_edit")
@@ -48,14 +48,14 @@ public class ContactModificationTests extends TestBase {
                                                .withEmail("ashors1102@gmail.com");
         app.contact().modify(contact);
         app.goTo().homePage();
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size()));
         assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
 
     @Test
     public void testContactModificationThroughDetails() throws Exception {
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData modifiedContact = before.iterator().next();
         ContactData contact = new ContactData().withId(modifiedContact.getId())
                                                .withFirstname("Aleksey_edit")
@@ -64,7 +64,7 @@ public class ContactModificationTests extends TestBase {
                                                .withEmail("ashors1102@gmail.com");
         app.contact().modifyThroughDetails(contact);
         app.goTo().homePage();
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size()));
         assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
     }
