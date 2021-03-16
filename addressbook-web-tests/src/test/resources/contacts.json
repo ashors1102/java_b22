@@ -3,7 +3,12 @@
     "firstname": "Firstname 0",
     "lastname": "Lastname 0",
     "mobilePhone": "+7-999-99-90",
+    "homePhone": "+7-999-99-90",
+    "workPhone": "+7-999-99-90",
     "email": "email-0@mail.com",
-    "group": "test1"
+    "group": "test1",
+    "address": "address",
+    "email2": "email-0@mail.com",
+    "email3": "email-0@mail.com"
   }
 ]

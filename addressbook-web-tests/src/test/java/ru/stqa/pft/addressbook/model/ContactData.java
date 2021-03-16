@@ -30,10 +30,12 @@ public class ContactData {
     @Type(type = "text")
     private String mobilePhone;
 
+    @Expose
     @Column(name = "home")
     @Type(type = "text")
     private String homePhone;
 
+    @Expose
     @Column(name = "work")
     @Type(type = "text")
     private String workPhone;
@@ -50,14 +52,17 @@ public class ContactData {
     @Transient
     private String group;
 
+    @Expose
     @Column(name = "address")
     @Type(type = "text")
     private String address;
 
+    @Expose
     @Column(name = "email2")
     @Type(type = "text")
     private String email2;
 
+    @Expose
     @Column(name = "email3")
     @Type(type = "text")
     private String email3;
@@ -65,6 +70,7 @@ public class ContactData {
     @Transient
     private String allEmails;
 
+    @Expose
     @Column(name = "photo")
     @Type(type = "text")
     private String photo;
