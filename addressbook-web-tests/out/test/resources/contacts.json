@@ -9,20 +9,6 @@
     "group": "test1",
     "address": "address",
     "email2": "email-0@mail.com",
-    "email3": "email-0@mail.com",
-    "photo": "src\\test\\resources\\stru.png"
-  },
-  {
-    "firstname": "Firstname 1",
-    "lastname": "Lastname 1",
-    "mobilePhone": "+7-999-99-91",
-    "homePhone": "+7-999-99-91",
-    "workPhone": "+7-999-99-91",
-    "email": "email-1@mail.com",
-    "group": "test1",
-    "address": "address",
-    "email2": "email-1@mail.com",
-    "email3": "email-1@mail.com",
-    "photo": "src\\test\\resources\\stru.png"
+    "email3": "email-0@mail.com"
   }
 ]

@@ -27,18 +27,8 @@ public class ContactCreationTests extends TestBase {
     public void checkForExistingGroup() {
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test1"));
+            app.group().create(new GroupData().withName("test1").withHeader("header_new").withFooter("footer_new"));
         }
-// Черновой вариант проверки непустого списка групп на наличие группы с нужным именем
-//        else {
-//            Set<GroupData> elements = app.group().all();
-//            for (GroupData element : elements){
-//                if (!element.getName().equals("test1")) {
-//                    app.group().create(new GroupData().withName("test1"));
-//                }
-//                break;
-//            }
-//        }
         app.goTo().homePage();
     }
 
@@ -77,7 +67,8 @@ public class ContactCreationTests extends TestBase {
     public void testContactCreation(ContactData contact) throws Exception {
         Contacts before = app.db().contacts();
         app.goTo().AddNewPage();
-        app.contact().create(contact, true);
+        File photo = new File("src/test/resources/stru.png");
+        app.contact().create(contact.withPhoto(photo), true);
         app.goTo().homePage();
         Contacts after = app.db().contacts();
         assertThat(after.size(), equalTo(before.size() + 1));

@@ -7,6 +7,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.Objects;
 
 @XStreamAlias("contact")
 @Entity
@@ -226,16 +227,15 @@ public class ContactData {
         ContactData that = (ContactData) o;
 
         if (id != that.id) return false;
-        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
-        if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-        if (mobilePhone != null ? !mobilePhone.equals(that.mobilePhone) : that.mobilePhone != null) return false;
-        if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
-        if (workPhone != null ? !workPhone.equals(that.workPhone) : that.workPhone != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
-        if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
-        return photo != null ? photo.equals(that.photo) : that.photo == null;
+        if (!Objects.equals(firstname, that.firstname)) return false;
+        if (!Objects.equals(lastname, that.lastname)) return false;
+        if (!Objects.equals(mobilePhone, that.mobilePhone)) return false;
+        if (!Objects.equals(homePhone, that.homePhone)) return false;
+        if (!Objects.equals(workPhone, that.workPhone)) return false;
+        if (!Objects.equals(email, that.email)) return false;
+        if (!Objects.equals(address, that.address)) return false;
+        if (!Objects.equals(email2, that.email2)) return false;
+        return Objects.equals(email3, that.email3);
     }
 
     @Override
@@ -250,7 +250,6 @@ public class ContactData {
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (email2 != null ? email2.hashCode() : 0);
         result = 31 * result + (email3 != null ? email3.hashCode() : 0);
-        result = 31 * result + (photo != null ? photo.hashCode() : 0);
         return result;
     }
 }
