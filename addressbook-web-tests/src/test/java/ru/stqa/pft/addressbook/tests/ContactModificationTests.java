@@ -32,7 +32,6 @@ public class ContactModificationTests extends TestBase {
                                                   .withEmail("email")
                                                   .withEmail2("email2")
                                                   .withEmail3("email3")
-                                                  .withGroup("test1")
                                                   .withPhoto(photo), true);
             app.goTo().homePage();
         }

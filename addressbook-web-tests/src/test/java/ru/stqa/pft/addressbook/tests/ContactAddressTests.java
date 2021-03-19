@@ -21,8 +21,7 @@ public class ContactAddressTests extends TestBase{
             app.contact().create(new ContactData().withFirstname("Aleksey")
                     .withLastname("Shorshin")
                     .withMobile("+79162267194")
-                    .withAddress("Советский_союз")
-                    .withGroup("test1"), true);
+                    .withAddress("Советский_союз"), true);
             app.goTo().homePage();
         }
     }

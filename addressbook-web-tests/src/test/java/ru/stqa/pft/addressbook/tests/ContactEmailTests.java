@@ -25,8 +25,7 @@ public class ContactEmailTests extends TestBase{
                     .withLastname("Shorshin")
                     .withEmail("aaa-a@email.ru")
                     .withEmail2("123456@email.com")
-                    .withEmail3("aaa123@email.рф")
-                    .withGroup("test1"), true);
+                    .withEmail3("aaa123@email.рф"), true);
             app.goTo().homePage();
         }
     }

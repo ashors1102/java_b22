@@ -94,8 +94,8 @@ public class ContactDataGenerator {
                     .withMobile(String.format("+7-999-99-9%s", i))
                     .withEmail(String.format("email-%s@mail.com", i))
                     .withEmail2(String.format("email-%s@mail.com", i))
-                    .withEmail3(String.format("email-%s@mail.com", i))
-                    .withGroup("test1"));
+                    .withEmail3(String.format("email-%s@mail.com", i)));
+            // .withGroup("test1")
         }
         return contacts;
     }

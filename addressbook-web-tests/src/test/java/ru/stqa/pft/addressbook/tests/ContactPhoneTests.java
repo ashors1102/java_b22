@@ -25,8 +25,7 @@ public class ContactPhoneTests extends TestBase{
                                                   .withLastname("Shorshin")
                                                   .withMobile("+79162267194")
                                                   .withHomePhone("7(495)000-00-00")
-                                                  .withWorkPhone("8 (800) 800 80 80")
-                                                  .withGroup("test1"), true);
+                                                  .withWorkPhone("8 (800) 800 80 80"), true);
             app.goTo().homePage();
         }
     }
