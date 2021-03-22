@@ -28,7 +28,9 @@ public class ContactCreationTests extends TestBase {
     public void checkForExistingGroup() {
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
-            app.group().create(new GroupData().withName("test1").withHeader("header_new").withFooter("footer_new"));
+            app.group().create(new GroupData().withName("test1")
+                                              .withHeader("header_new")
+                                              .withFooter("footer_new"));
         }
         app.goTo().homePage();
     }

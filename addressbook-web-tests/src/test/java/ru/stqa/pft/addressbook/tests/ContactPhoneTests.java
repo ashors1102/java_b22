@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -16,16 +17,14 @@ public class ContactPhoneTests extends TestBase{
     @BeforeMethod
     public void checkForExistingPreconditions() {
         if (app.db().contacts().size() == 0) {
-            if (app.db().groups().size() == 0) {
-                app.goTo().groupPage();
-                app.group().create(new GroupData().withName("test1"));
-            }
+            File photo = new File("src/test/resources/stru.png");
             app.goTo().AddNewPage();
             app.contact().create(new ContactData().withFirstname("Aleksey")
                                                   .withLastname("Shorshin")
                                                   .withMobile("+79162267194")
                                                   .withHomePhone("7(495)000-00-00")
-                                                  .withWorkPhone("8 (800) 800 80 80"), true);
+                                                  .withWorkPhone("8 (800) 800 80 80")
+                                                  .withPhoto(photo), true);
             app.goTo().homePage();
         }
     }

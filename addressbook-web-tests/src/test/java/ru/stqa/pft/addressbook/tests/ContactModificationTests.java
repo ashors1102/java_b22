@@ -20,7 +20,9 @@ public class ContactModificationTests extends TestBase {
         if (app.db().contacts().size() == 0) {
             if (app.db().groups().size() == 0){
                 app.goTo().groupPage();
-                app.group().create(new GroupData().withName("test1").withHeader("header_new").withFooter("footer_new"));
+                app.group().create(new GroupData().withName("test1")
+                                                  .withHeader("header_new")
+                                                  .withFooter("footer_new"));
             }
             app.goTo().AddNewPage();
             app.contact().create(new ContactData().withFirstname("Firstname_new")

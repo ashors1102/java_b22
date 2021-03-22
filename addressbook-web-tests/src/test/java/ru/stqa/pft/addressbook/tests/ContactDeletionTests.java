@@ -5,6 +5,9 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.io.File;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -18,10 +21,10 @@ public class ContactDeletionTests extends TestBase {
                 app.group().create(new GroupData().withName("test1"));
             }
             app.goTo().AddNewPage();
+            File photo = new File("src/test/resources/stru.png");
             app.contact().create(new ContactData().withFirstname("Aleksey")
                                                   .withLastname("Shorshin")
-                                                  .withMobile("+79162267194")
-                                                  .withEmail("aleksey.shorshin@yandex.ru"), true);
+                                                  .withPhoto(photo), true);
             app.goTo().homePage();
         }
     }

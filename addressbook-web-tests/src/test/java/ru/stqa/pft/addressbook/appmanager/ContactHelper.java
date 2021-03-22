@@ -189,4 +189,27 @@ public class ContactHelper extends HelperBase  {
                                 .withEmail2(email2)
                                 .withEmail3(email3);
     }
+
+    public void selectGroup(Contacts contactData) {
+        if (contactData.iterator().next().getGroups().size() > 1) {
+            Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+        }
+    }
+
+
+    public void addContactToGroup() {
+        click(By.name("add"));
+    }
+
+    public void goToGroupPage(Contacts contactData) {
+        if (contactData.iterator().next().getGroups().size() > 0) {
+            Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+        }
+    }
+
+    public void removeContactFromGroup() {
+        click(By.name("remove"));
+    }
 }
