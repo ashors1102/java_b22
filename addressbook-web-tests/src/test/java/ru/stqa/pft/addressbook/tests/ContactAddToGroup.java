@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.File;
 
@@ -32,9 +33,25 @@ public class ContactAddToGroup extends TestBase{
     @Test
     public void contactAddToGroupTest(){
         Contacts contacts = app.db().contacts();
-        app.contact().selectById(contacts.iterator().next().getId());
-        app.contact().selectGroup(contacts);
-        app.contact().addContactToGroup();
+        Groups groups = app.db().groups();
+        System.out.println(groups);
+        for (ContactData contact : contacts) {
+            System.out.println(contact.getId());
+            System.out.println(contact.getGroups());
+            System.out.println(groups.equals(contact.getGroups()));
+            if (!groups.equals(contact.getGroups())){
+                app.contact().selectById(contact.getId());
+                app.contact().selectGroup(contacts);
+                app.contact().addContactToGroup();
+            }
+            else {
+                app.goTo().groupPage();
+                app.group().create(new GroupData().withName("test1")
+                                                  .withHeader("header_new")
+                                                  .withFooter("footer_new"));
+            }
+            break;
+        }
         Contacts contacts_after_add = app.db().contacts();
         assertThat(contacts.iterator().next(), equalTo(contacts_after_add.iterator().next()));
     }
