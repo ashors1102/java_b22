@@ -193,7 +193,12 @@ public class ContactHelper extends HelperBase  {
     public void selectGroup(Contacts contactData) {
         if (contactData.iterator().next().getGroups().size() > 1) {
             Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
-            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator()
+                                                                                        .next()
+                                                                                        .getGroups()
+                                                                                        .iterator()
+                                                                                        .next()
+                                                                                        .getName());
         }
     }
 
@@ -205,7 +210,12 @@ public class ContactHelper extends HelperBase  {
     public void goToGroupPage(Contacts contactData) {
         if (contactData.iterator().next().getGroups().size() > 0) {
             Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
-            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator().next().getGroups().iterator().next().getName());
+            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator()
+                                                                                        .next()
+                                                                                        .getGroups()
+                                                                                        .iterator()
+                                                                                        .next()
+                                                                                        .getName());
         }
     }
 
