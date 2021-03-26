@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -202,24 +204,24 @@ public class ContactHelper extends HelperBase  {
         }
     }
 
-
-    public void addContactToGroup() {
-        click(By.name("add"));
+    public void selectContactWithoutGroup(ContactData contactData) {
+        wd.findElement(By.xpath(String.format("//input[@type='checkbox']", contactData.getId()))).click();
     }
 
-    public void goToGroupPage(Contacts contactData) {
-        if (contactData.iterator().next().getGroups().size() > 0) {
-            Assert.assertTrue(contactData.iterator().next().getGroups().size() == 1);
-            new Select(wd.findElement(By.name("group"))).selectByVisibleText(contactData.iterator()
-                                                                                        .next()
-                                                                                        .getGroups()
-                                                                                        .iterator()
-                                                                                        .next()
-                                                                                        .getName());
-        }
+    public void selectGroup(GroupData group) {
+        wd.findElement(By.xpath(String.format("//select[@name='to_group']/option[@value='%s']", group.getId()))).click();
     }
 
-    public void removeContactFromGroup() {
-        click(By.name("remove"));
+    public void pushAddToGroup() {
+        wd.findElement(By.xpath("//input[@name='add']")).click();
+    }
+
+    public void getGroupData(GroupData groupData) {
+        WebElement element = wd.findElement(By.xpath(String.format("//select[@name='group']/option[text() = '%s']", groupData.getName())));
+        element.click();
+    }
+
+    public void pushRemoveFromGroup() {
+        wd.findElement(By.xpath("//input[@name='remove']")).click();
     }
 }
