@@ -1,10 +1,7 @@
 package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 public class RegistrationHelper extends HelperBase{
-    private WebDriver wd;
 
     public RegistrationHelper(ApplicationManager app) {
         super(app);
@@ -21,6 +18,6 @@ public class RegistrationHelper extends HelperBase{
         wd.get(confirmationLink);
         type(By.name("password"), password);
         type(By.name("password_confirm"), password);
-        click(By.cssSelector("input[value='Update_User']"));
+        click(By.cssSelector("button[type='submit']"));
     }
 }
