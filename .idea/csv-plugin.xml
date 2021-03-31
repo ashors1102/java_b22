@@ -45,6 +45,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\appmanager\MailHelper.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\appmanager\RegistrationHelper.java">
           <value>
             <Attribute>
@@ -53,6 +60,20 @@
           </value>
         </entry>
         <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\appmanager\SoapHelper.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\model\MantisUserData.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\tests\ChangePasswordTests.java">
           <value>
             <Attribute>
               <option name="separator" value=";" />

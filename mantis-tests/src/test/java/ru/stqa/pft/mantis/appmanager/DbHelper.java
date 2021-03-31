@@ -5,7 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.stqa.pft.mantis.model.MantisUser;
+import ru.stqa.pft.mantis.model.UserData;
+import ru.stqa.pft.mantis.model.Users;
 
 import java.util.List;
 
@@ -23,12 +24,12 @@ public class DbHelper {
         sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
     }
 
-    public MantisUser mantisUser(){
+    public Users mantisUsers (){
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        List<MantisUser> result = session.createQuery("FROM MantisUser WHERE access_level = '25'").list();
+        List<UserData> result = session.createQuery( "FROM UserData WHERE username <> 'administrator'" ).list();
         session.getTransaction().commit();
         session.close();
-        return result.iterator().next();
+        return new Users(result);
     }
 }
