@@ -52,7 +52,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\appmanager\SoapHelper.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\tests\LoginTests.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\mantis-tests\src\test\java\ru\stqa\pft\mantis\tests\SoapTests.java">
           <value>
             <Attribute>
               <option name="separator" value=";" />
