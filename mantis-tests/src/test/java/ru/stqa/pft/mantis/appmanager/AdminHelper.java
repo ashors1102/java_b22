@@ -9,16 +9,16 @@ public class AdminHelper extends HelperBase{
         super(app);
     }
 
-    public void finish(String confirmationLink, UserData mantisUser, String newPassword) {
+    public void finish(String confirmationLink, UserData user, String newPassword) {
         wd.get(confirmationLink);
-        type(By.name("realname"), mantisUser.getRealname());
+        type(By.name("realname"), user.getRealname());
         type(By.name("password"), newPassword);
         type(By.name("password_confirm"), newPassword);
         click(By.cssSelector("span.bigger-110"));
     }
 
-    public void reset(UserData mantisUser){
-        click(By.cssSelector(String.format("a[href='manage_user_edit_page.php?user_id=%s']", mantisUser.getId())));
+    public void reset(UserData user){
+        click(By.cssSelector(String.format("a[href='manage_user_edit_page.php?user_id=%s']", user.getId())));
         click(By.xpath("//form[@id = 'manage-user-reset-form']//input[@type='submit']"));
     }
 

@@ -50,8 +50,8 @@ public class UserData {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", realname='" + realname + '\'' +
-                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 
@@ -60,13 +60,12 @@ public class UserData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserData that = (UserData) o;
+        UserData userData = (UserData) o;
 
-        if (id != that.id) return false;
-        if (!Objects.equals(username, that.username)) return false;
-        if (!Objects.equals(realname, that.realname)) return false;
-        if (!Objects.equals(email, that.email)) return false;
-        return Objects.equals(password, that.password);
+        if (id != userData.id) return false;
+        if (!Objects.equals(username, userData.username)) return false;
+        if (!Objects.equals(realname, userData.realname)) return false;
+        return Objects.equals(email, userData.email);
     }
 
     @Override
@@ -75,7 +74,6 @@ public class UserData {
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (realname != null ? realname.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 }
