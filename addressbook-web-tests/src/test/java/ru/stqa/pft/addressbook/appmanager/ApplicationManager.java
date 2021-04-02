@@ -7,7 +7,6 @@ import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -23,6 +22,7 @@ public class ApplicationManager {
     private ContactHelper contactHelper;
     private String browser;
     private DbHelper dbHelper;
+    private RestHelper restHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -40,7 +40,7 @@ public class ApplicationManager {
             wd = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
-        }  else if (browser.equals(BrowserType.OPERA)) {
+        } else if (browser.equals(BrowserType.OPERA)) {
             wd = new OperaDriver();
         }
         wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
@@ -74,5 +74,12 @@ public class ApplicationManager {
 
     public DbHelper db() {
         return dbHelper;
+    }
+
+    public RestHelper rest() {
+        if (restHelper == null) {
+            restHelper = new RestHelper(this);
+        }
+        return restHelper;
     }
 }

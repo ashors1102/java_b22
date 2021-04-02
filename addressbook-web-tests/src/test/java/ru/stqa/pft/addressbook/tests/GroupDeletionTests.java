@@ -4,6 +4,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
+
+import java.io.IOException;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -19,7 +22,8 @@ public class GroupDeletionTests extends TestBase {
     }
 
     @Test
-    public void testGroupDeletion() throws Exception {
+    public void testGroupDeletion() throws IOException {
+        skipIfNotFixed(100);
         Groups before = app.db().groups();
         app.goTo().groupPage();
         GroupData deletedGroup = before.iterator().next();
