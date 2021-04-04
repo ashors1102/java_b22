@@ -10,7 +10,7 @@ public class GithubTests {
 
     @Test
     public void testCommits() throws IOException {
-        Github github = new RtGithub("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");
+        Github github = new RtGithub("******");
         RepoCommits commits = github.repos()
                                     .get(new Coordinates.Simple("ashors1102", "java_b22"))
                                     .commits();
